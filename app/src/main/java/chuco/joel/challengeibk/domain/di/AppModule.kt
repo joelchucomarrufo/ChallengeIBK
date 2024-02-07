@@ -9,6 +9,7 @@ import chuco.joel.challengeibk.data.repository.ChallengeRepositoryImpl
 import chuco.joel.challengeibk.domain.usecase.CuentasUseCase
 import chuco.joel.challengeibk.domain.usecase.LoginUseCase
 import chuco.joel.challengeibk.domain.usecase.MovimientosUseCase
+import chuco.joel.challengeibk.presentation.login.LoginViewModelFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -72,15 +73,15 @@ class AppModule {
         return MovimientosUseCase(repository)
     }
 
-    /*
-           @Provides
-           fun providePokemonViewModelFactory(useCase: PokemonUseCase): ViewModelProvider.Factory {
-               return PokemonViewModelFactory(useCase)
-           }
+    @Provides
+    fun provideLoginViewModelFactory(useCase: LoginUseCase): ViewModelProvider.Factory {
+        return LoginViewModelFactory(useCase)
+    }
 
-           @Provides
-           fun providePokemonDetailViewModelFactory(pokemonUseCase: PokemonUseCase, pokemonDetailUseCase: PokemonDetailUseCase): ViewModelProvider.Factory {
-               return PokemonDetailViewModelFactory(pokemonUseCase, pokemonDetailUseCase)
-           }
-       */
+    /*
+              @Provides
+              fun providePokemonDetailViewModelFactory(pokemonUseCase: PokemonUseCase, pokemonDetailUseCase: PokemonDetailUseCase): ViewModelProvider.Factory {
+                  return PokemonDetailViewModelFactory(pokemonUseCase, pokemonDetailUseCase)
+              }
+          */
 }
