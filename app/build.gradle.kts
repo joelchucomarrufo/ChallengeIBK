@@ -53,10 +53,6 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    //Room
-    implementation ("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
-
     //Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
@@ -78,10 +74,6 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
-
-    //Paging
-    runtimeOnly("androidx.paging:paging-runtime-ktx:3.2.1")
-    runtimeOnly("androidx.recyclerview:recyclerview:1.3.2")
 
     //Glide
     implementation ("com.github.bumptech.glide:glide:4.16.0")
