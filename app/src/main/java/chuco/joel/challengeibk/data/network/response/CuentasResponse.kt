@@ -13,5 +13,7 @@ data class CuentaResponse (
     @SerializedName("accountName")
     val accountName: String?,
     @SerializedName("balance")
-    val balance: Double?
+    val balance: Double?,
+    @SerializedName("symbol")
+    val symbol: String?
 )

@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import chuco.joel.challengeibk.R
 import chuco.joel.challengeibk.databinding.FragmentLoginBinding
 import chuco.joel.challengeibk.presentation.base.BaseFragment
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,21 +24,15 @@ class LoginFragment : BaseFragment() {
     ): View {
         val binding = FragmentLoginBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        (activity as AppCompatActivity).supportActionBar?.hide()
         setupViews(binding)
         setupObservers()
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        (activity as AppCompatActivity).supportActionBar?.show()
-    }
-
     private fun setupViews(binding: FragmentLoginBinding) {
 
-        val toolbar = requireActivity().findViewById<Toolbar>(R.id.topAppBar)
-        toolbar.visibility = View.GONE
+        val appBar = requireActivity().findViewById<AppBarLayout>(R.id.appBar)
+        appBar.visibility = View.GONE
     }
 
     private fun setupObservers() {

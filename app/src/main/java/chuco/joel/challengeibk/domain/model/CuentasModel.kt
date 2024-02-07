@@ -7,5 +7,7 @@ data class CuentasModel (
 data class CuentaModel (
     val id: Int?,
     val nombre: String?,
-    val saldo: Double?
+    val saldo: Double = 0.0,
+    val simbolo: String?,
+    val simboloSaldo: String?
 )

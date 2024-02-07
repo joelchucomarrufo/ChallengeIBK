@@ -18,8 +18,8 @@ class LoginViewModel @Inject constructor(
     private val sessionManager: SessionManager
 ) : ViewModel() {
 
-    var username: String = ""
-    var password: String = ""
+    var username: String = "user123&"
+    var password: String = "123456"
     var message = MutableLiveData("")
     var error = MutableLiveData("")
     var loading = MutableLiveData(false)
@@ -45,14 +45,14 @@ class LoginViewModel @Inject constructor(
                             if(it.data.error.isNullOrEmpty()) {
                                 sessionManager.login()
                             }
-                        }, 180000)
+                        }, 3000)
                     }
                     is ResultType.Error -> {
                         Handler(Looper.getMainLooper()).postDelayed({
                             val er = it.exception
                             loading.value = false
                             error.value = er.message.toString()
-                        }, 180000)
+                        }, 3000)
                     }
                 }
             }
