@@ -10,29 +10,27 @@
         android:name="chuco.joel.challengeibk.presentation.login.LoginFragment"
         android:label="Setting Fragment"
         tools:layout="@layout/fragment_login">
-<!--
+
         <action
-            android:id="@+id/actionSettingFragmentToPokemonListFragment"
-            app:destination="@id/pokemonListFragment" />
--->
+            android:id="@+id/actionLoginFragmentToHomeFragment"
+            app:destination="@id/HomeFragment" />
+
     </fragment>
 
-    <!--
     <fragment
-        android:id="@+id/pokemonListFragment"
-        android:name="solis.jhon.pokezeus.presentation.feature.home.PokemonListFragment"
-        android:label="Pokemon Fragment"
-        tools:layout="@layout/fragment_pokemon_list">
+        android:id="@+id/HomeFragment"
+        android:name="chuco.joel.challengeibk.presentation.home.HomeFragment"
+        android:label="Home Fragment"
+        tools:layout="@layout/fragment_home">
+    <!--
+            <argument
+                android:name="backgroundColor"
+                app:argType="integer" />
 
-        <argument
-            android:name="backgroundColor"
-            app:argType="integer" />
-
-        <argument
-            android:name="initialsColor"
-            app:argType="integer" />
-
+            <argument
+                android:name="initialsColor"
+                app:argType="integer" />
+        -->
     </fragment>
-    -->
 
 </navigation>

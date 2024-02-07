@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.ChallengeIBK" parent="Base.Theme.ChallengeIBK" />
+
+    <style name="TransparentTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
 </resources>

@@ -5,13 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import chuco.joel.challengeibk.R
 import chuco.joel.challengeibk.databinding.FragmentLoginBinding
+import chuco.joel.challengeibk.presentation.base.BaseFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
 
     private val viewModel: LoginViewModel by viewModels()
 
@@ -23,6 +28,7 @@ class LoginFragment : Fragment() {
         binding.viewModel = viewModel
         (activity as AppCompatActivity).supportActionBar?.hide()
         setupViews(binding)
+        setupObservers()
         return binding.root
     }
 
@@ -33,6 +39,32 @@ class LoginFragment : Fragment() {
 
     private fun setupViews(binding: FragmentLoginBinding) {
 
+        val toolbar = requireActivity().findViewById<Toolbar>(R.id.topAppBar)
+        toolbar.visibility = View.GONE
+    }
+
+    private fun setupObservers() {
+        viewModel.message.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()) {
+                findNavController().navigate(R.id.actionLoginFragmentToHomeFragment)
+            }
+        }
+
+        viewModel.error.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()) {
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(resources.getString(R.string.app_name))
+                    .setMessage(it)
+                    .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            }
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
     }
 
 }

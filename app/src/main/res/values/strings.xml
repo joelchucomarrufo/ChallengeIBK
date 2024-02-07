@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">ChallengeIBK</string>
+    <string name="app_name">Challenge IBK</string>
+    <string name="accept">ACEPTAR</string>
 </resources>

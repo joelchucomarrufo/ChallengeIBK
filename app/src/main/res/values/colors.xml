@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="greenIbk">#FF05be50</color>
     <color name="backgroundIbk">#FFfbfbfb</color>
+    <color name="backgroundProgress">#26000000</color>
 </resources>

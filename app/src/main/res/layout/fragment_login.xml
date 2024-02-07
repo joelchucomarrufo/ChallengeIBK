@@ -42,6 +42,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={viewModel.username}"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,;:!@#$%^&amp;*()-_"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -57,6 +58,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={viewModel.password}"
+                        android:inputType="textPassword"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,;:!@#$%^&amp;*()-_"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
