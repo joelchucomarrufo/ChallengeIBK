@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Challenge IBK</string>
+    <string name="error_message">Ha ocurrido un error, vuelve a intentarlo.</string>
+    <string name="error_message_update">Vuelve a intentarlo.</string>
     <string name="accept">ACEPTAR</string>
+    <string name="retry">REINTENTAR</string>
+    <string name="message_accounts_empty">No se han podido cargar las cuentas, inténtelo de nuevo.</string>
+    <string name="login_password">CONTRASEÑA</string>
+    <string name="login_username">DNI</string>
+    <string name="login_enter">INGRESAR</string>
 </resources>

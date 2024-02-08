@@ -93,4 +93,9 @@ class AppModule {
     fun provideHomeViewModelFactory(useCase: CuentasUseCase, sessionManager: SessionManager): ViewModelProvider.Factory {
         return HomeViewModelFactory(useCase, sessionManager)
     }
+
+    @Provides
+    fun provideSessionManager(@ApplicationContext context: Context, sharedPreferences: SharedPreferences): SessionManager {
+        return SessionManager(sharedPreferences, context)
+    }
 }

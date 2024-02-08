@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SEND_BROADCAST" />
 
     <application
         android:name=".presentation.ChallengeApplication"
@@ -16,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChallengeIBK"
         tools:targetApi="31">
+
+        <receiver android:name=".presentation.util.ChallengeReceiver" android:exported="false" android:enabled="true"/>
+
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">

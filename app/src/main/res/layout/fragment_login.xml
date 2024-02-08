@@ -36,7 +36,7 @@
                     android:id="@+id/tilUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="DNI">
+                    android:hint="@string/login_username">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:hint="CONTRASEÑA">
+                    android:hint="@string/login_password">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                     android:layout_height="56dp"
                     android:layout_marginTop="24dp"
                     app:cornerRadius="8dp"
-                    android:text="INGRESAR"
+                    android:text="@string/login_enter"
                     android:onClick="@{() -> viewModel.onLoginClicked()}"/>
 
             </LinearLayout>

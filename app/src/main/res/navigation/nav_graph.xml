@@ -24,12 +24,9 @@
         tools:layout="@layout/fragment_home">
     <!--
             <argument
-                android:name="backgroundColor"
+                android:name="idAccount"
                 app:argType="integer" />
 
-            <argument
-                android:name="initialsColor"
-                app:argType="integer" />
         -->
     </fragment>
 

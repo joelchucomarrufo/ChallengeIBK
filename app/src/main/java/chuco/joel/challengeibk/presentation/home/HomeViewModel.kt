@@ -22,12 +22,18 @@ class HomeViewModel @Inject constructor(
 
     var accountsList = mutableListOf<CuentaModel>()
     var error = MutableLiveData("")
+    var errorUpdate = MutableLiveData("")
     var loading = MutableLiveData(false)
     var loadingPull = MutableLiveData(false)
     var isLoggedIn = MutableLiveData(false)
+    var isEmpty = MutableLiveData(false)
     var _adapterAccounts: AccountsAdapter? = null
 
     init {
+        load()
+    }
+
+    fun load() {
         viewModelScope.launch {
             useCase.invoke().collect {
                 when (it) {
@@ -78,7 +84,7 @@ class HomeViewModel @Inject constructor(
                         Handler(Looper.getMainLooper()).postDelayed({
                             val er = it.exception
                             loadingPull.value = false
-                            error.value = er.message.toString()
+                            errorUpdate.value = er.message.toString()
                         }, 3000)
                     }
                 }

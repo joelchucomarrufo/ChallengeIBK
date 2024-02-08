@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import chuco.joel.challengeibk.R
 import chuco.joel.challengeibk.databinding.FragmentHomeBinding
+import chuco.joel.challengeibk.domain.model.CuentaModel
 import chuco.joel.challengeibk.presentation.base.BaseFragment
 import chuco.joel.challengeibk.presentation.home.adapter.AccountsAdapter
 import com.google.android.material.appbar.AppBarLayout
@@ -28,6 +30,7 @@ class HomeFragment : BaseFragment() {
     ): View {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) { }
         setupViews(binding)
         setupObservers(binding)
         return binding.root
@@ -72,6 +75,27 @@ class HomeFragment : BaseFragment() {
         viewModel.loadingPull.observe((viewLifecycleOwner)) {
             if (!it) {
                 binding.srAccounts.isRefreshing = false
+            }
+        }
+
+        viewModel.errorUpdate.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()) {
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(resources.getString(R.string.app_name))
+                    .setMessage(resources.getString(R.string.error_message))
+                    .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
+                        binding.apply {
+                            rvAccountList.apply {
+                                viewModel?.let { viewModel ->
+                                    viewModel.accountsList = arrayListOf()
+                                    viewModel.accountsList.add(CuentaModel(0, "", 0.0, "", ""))
+                                    viewModel._adapterAccounts?.bindItems(viewModel.accountsList)
+                                }
+                            }
+                        }
+                        dialog.dismiss()
+                    }
+                    .show()
             }
         }
     }

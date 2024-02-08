@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import chuco.joel.challengeibk.R
@@ -24,6 +25,8 @@ class LoginFragment : BaseFragment() {
     ): View {
         val binding = FragmentLoginBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) { }
+
         setupViews(binding)
         setupObservers()
         return binding.root
@@ -56,6 +59,12 @@ class LoginFragment : BaseFragment() {
 
         viewModel.loading.observe(viewLifecycleOwner) {
             showLoading(it)
+        }
+
+        viewModel.isLoggedIn.observe(viewLifecycleOwner) {
+            if (it) {
+                findNavController().navigate(R.id.actionLoginFragmentToHomeFragment)
+            }
         }
     }
 
