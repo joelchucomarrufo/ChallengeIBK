@@ -1,6 +1,7 @@
 package chuco.joel.challengeibk.presentation.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +23,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : BaseFragment() {
 
     private val viewModel: HomeViewModel by viewModels()
-    private var originalMarginTop: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,11 +82,16 @@ class HomeFragment : BaseFragment() {
             if (!it.isNullOrEmpty()) {
                 MaterialAlertDialogBuilder(requireContext())
                     .setTitle(resources.getString(R.string.app_name))
-                    .setMessage(resources.getString(R.string.error_message))
+                    .setMessage(resources.getString(R.string.error_message_update))
                     .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
                         binding.apply {
                             rvAccountList.apply {
                                 viewModel?.let { viewModel ->
+                                    rvAccountList.apply {
+                                        viewModel._adapterAccounts = AccountsAdapter(::showCuentaDetail, this.context)
+                                        this.adapter = viewModel._adapterAccounts
+                                        this.layoutManager = GridLayoutManager(context, 1, RecyclerView.VERTICAL, false)
+                                    }
                                     viewModel.accountsList = arrayListOf()
                                     viewModel.accountsList.add(CuentaModel(0, "", 0.0, "", ""))
                                     viewModel._adapterAccounts?.bindItems(viewModel.accountsList)

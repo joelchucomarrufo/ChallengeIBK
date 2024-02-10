@@ -3,7 +3,6 @@ package chuco.joel.challengeibk.presentation
 import android.app.AlertDialog
 import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
@@ -56,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                 dialog.dismiss()
                 navController.popBackStack()
                 navController.navigate(R.id.loginFragment)
-                Log.i("*** showMessageSessionExpired: ", "popBackStack")
             }
             .setCancelable(false)
             .create()
