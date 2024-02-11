@@ -13,5 +13,7 @@ data class MovimientoResponse (
     @SerializedName("description")
     val description: String?,
     @SerializedName("amount")
-    val amount: Double?
+    val amount: Double?,
+    @SerializedName("symbol")
+    val symbol: String?
 )

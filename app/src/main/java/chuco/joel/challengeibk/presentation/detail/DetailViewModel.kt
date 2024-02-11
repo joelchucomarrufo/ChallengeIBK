@@ -1,37 +1,32 @@
-package chuco.joel.challengeibk.presentation.login
+package chuco.joel.challengeibk.presentation.detail
 
 import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import chuco.joel.challengeibk.domain.usecase.LoginUseCase
+import chuco.joel.challengeibk.domain.model.MovimientoModel
+import chuco.joel.challengeibk.domain.usecase.MovimientosUseCase
 import chuco.joel.challengeibk.domain.utils.ResultType
-import chuco.joel.challengeibk.domain.utils.SessionManager
+import chuco.joel.challengeibk.presentation.detail.adapter.MovementsAdapter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
-    private val useCase: LoginUseCase,
-    private val sessionManager: SessionManager
+class DetailViewModel @Inject constructor(
+    private val useCase: MovimientosUseCase
 ) : ViewModel() {
 
-    var username: String = ""
-    var password: String = ""
-    var message = MutableLiveData("")
+    private var movementsList = mutableListOf<MovimientoModel>()
     var error = MutableLiveData("")
     var loading = MutableLiveData(false)
-    var isLoggedIn = MutableLiveData(false)
+    var isEmpty = MutableLiveData(true)
+    var _adapterMovements: MovementsAdapter? = null
 
-    init {
-        isLoggedIn.value = sessionManager.isLoggedIn()
-    }
-
-    fun onLoginClicked() {
+    fun load(id: Int) {
         viewModelScope.launch {
-            useCase.invoke(username, password).collect {
+            useCase.invoke(id).collect {
                 when (it) {
                     is ResultType.Loading -> {
                         loading.value = true
@@ -39,12 +34,9 @@ class LoginViewModel @Inject constructor(
                     is ResultType.Success -> {
                         Handler(Looper.getMainLooper()).postDelayed({
                             loading.value = false
-                            error.value = it.data.error
-                            message.value = it.data.message
-
-                            if(it.data.error.isNullOrEmpty()) {
-                                sessionManager.login()
-                            }
+                            movementsList = it.data.movimientos?.toMutableList() ?: arrayListOf()
+                            _adapterMovements?.bindItems(movementsList)
+                            isEmpty.value = movementsList.isEmpty()
                         }, 3000)
                     }
                     is ResultType.Error -> {
@@ -52,6 +44,7 @@ class LoginViewModel @Inject constructor(
                             val er = it.exception
                             loading.value = false
                             error.value = er.message.toString()
+                            isEmpty.value = movementsList.isEmpty()
                         }, 3000)
                     }
                 }

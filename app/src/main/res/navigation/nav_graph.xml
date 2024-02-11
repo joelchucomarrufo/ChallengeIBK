@@ -22,12 +22,24 @@
         android:name="chuco.joel.challengeibk.presentation.home.HomeFragment"
         android:label="Home Fragment"
         tools:layout="@layout/fragment_home">
-    <!--
-            <argument
-                android:name="idAccount"
-                app:argType="integer" />
 
-        -->
+        <action
+            android:id="@+id/actionHomeFragmentToDetailFragment"
+            app:destination="@id/DetailFragment" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/DetailFragment"
+        android:name="chuco.joel.challengeibk.presentation.detail.DetailFragment"
+        android:label="Detail Fragment"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="cuenta"
+            app:argType="chuco.joel.challengeibk.domain.model.CuentaModel" />
+
     </fragment>
 
 </navigation>

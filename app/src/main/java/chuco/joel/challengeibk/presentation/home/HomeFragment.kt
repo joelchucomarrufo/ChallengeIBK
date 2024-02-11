@@ -1,12 +1,12 @@
 package chuco.joel.challengeibk.presentation.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import chuco.joel.challengeibk.R
@@ -34,6 +34,11 @@ class HomeFragment : BaseFragment() {
         setupViews(binding)
         setupObservers(binding)
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.load()
     }
 
     private fun setupViews(binding: FragmentHomeBinding) {
@@ -93,7 +98,7 @@ class HomeFragment : BaseFragment() {
                                         this.layoutManager = GridLayoutManager(context, 1, RecyclerView.VERTICAL, false)
                                     }
                                     viewModel.accountsList = arrayListOf()
-                                    viewModel.accountsList.add(CuentaModel(0, "", 0.0, "", ""))
+                                    viewModel.accountsList.add(CuentaModel(0, "", "", 0.0, "", ""))
                                     viewModel._adapterAccounts?.bindItems(viewModel.accountsList)
                                 }
                             }
@@ -105,11 +110,8 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun showCuentaDetail(id: Int) {
-        /*PokemonDetailFragment(pokemon, ::reloadPokemonList, backgroundColorSelected, initialsColorSelected).show(
-            parentFragmentManager,
-            "DialogPokemonDetail"
-        )*/
+    private fun showCuentaDetail(cuenta: CuentaModel) {
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(cuenta = cuenta))
     }
 
 }

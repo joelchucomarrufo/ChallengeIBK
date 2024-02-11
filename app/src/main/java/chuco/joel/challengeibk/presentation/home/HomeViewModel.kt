@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import chuco.joel.challengeibk.domain.model.CuentaModel
 import chuco.joel.challengeibk.domain.usecase.CuentasUseCase
 import chuco.joel.challengeibk.domain.utils.ResultType
-import chuco.joel.challengeibk.domain.utils.SessionManager
 import chuco.joel.challengeibk.presentation.home.adapter.AccountsAdapter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,8 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val useCase: CuentasUseCase,
-    private val sessionManager: SessionManager
+    private val useCase: CuentasUseCase
 ) : ViewModel() {
 
     var accountsList = mutableListOf<CuentaModel>()
@@ -25,13 +23,7 @@ class HomeViewModel @Inject constructor(
     var errorUpdate = MutableLiveData("")
     var loading = MutableLiveData(false)
     var loadingPull = MutableLiveData(false)
-    var isLoggedIn = MutableLiveData(false)
-    var isEmpty = MutableLiveData(false)
     var _adapterAccounts: AccountsAdapter? = null
-
-    init {
-        load()
-    }
 
     fun load() {
         viewModelScope.launch {

@@ -12,6 +12,8 @@ data class CuentaResponse (
     val id: Int?,
     @SerializedName("accountName")
     val accountName: String?,
+    @SerializedName("accountNumber")
+    val accountNumber: String?,
     @SerializedName("balance")
     val balance: Double?,
     @SerializedName("symbol")

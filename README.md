@@ -1,12 +1,10 @@
-**Challengeibk**
+# **Challengeibk**
 
 Ejemplo práctico (App Banca Móvil)
 
-Contenido
+## Contenido
 
-[TOC]
-
-## Funcionalidades Realizadas
+### Funcionalidades Realizadas
 
 #### Login
 -----
@@ -20,21 +18,17 @@ Contenido
 - Al iniciar se consume un servicio que primero nos traerá un listado de 2 cuentas.
 - Al realizar un push to refresh, este consume otro servicio que solo me traerá una cuenta para añadirla al listado.
 - En caso haya un error al obtener el listado, este mostrará un mensaje de error dando la opcion de reintentar.
-
----------
-## Funcionalidades Faltantes
-
-#### Home
------
-- Mostrar un card de lista vacia al actualizar el listado.
+- Se muestra un card de lista vacia al actualizar el listado cuando hay un error de respuesta del servicio.
 
 #### Detalle
 -----
-- Todo.
+- Se carga el detalle de la cuenta seleccion.
+- Se tiene la funcionalidad de compartir numero de cuenta al pulsar el botón de copiar.
+- Se cargan las lista de moviemientos de la cuenta, mostrando el monto en diferente color en caso haya un abono o debito.
 
 ---------
 
-## Librerias usadas
+### Librerias usadas
 
 - Retrofit.
 - LiveData.
@@ -44,5 +38,4 @@ Contenido
 - Material.
 - Flow.
 - Broadcast Receiver.
-
-
+- Navigation safeargs

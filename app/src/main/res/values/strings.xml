@@ -8,4 +8,6 @@
     <string name="login_password">CONTRASEÑA</string>
     <string name="login_username">DNI</string>
     <string name="login_enter">INGRESAR</string>
+    <string name="account_number">Número de cuenta</string>
+    <string name="copy">Copiar</string>
 </resources>

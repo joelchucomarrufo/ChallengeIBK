@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import chuco.joel.challengeibk.databinding.ItemAccountBinding
 import chuco.joel.challengeibk.databinding.ItemEmptyBinding
 import chuco.joel.challengeibk.domain.model.CuentaModel
-import chuco.joel.challengeibk.domain.utils.getColor
 
 class AccountsAdapter(
-    val callback: (id: Int) -> Unit,
+    val callback: (cuenta: CuentaModel) -> Unit,
     val context: Context,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -26,12 +25,6 @@ class AccountsAdapter(
         }
         items.clear()
         items.addAll(nItems)
-        notifyDataSetChanged()
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun bindNewItem(item: CuentaModel) {
-        items.add(item)
         notifyDataSetChanged()
     }
 
@@ -69,9 +62,8 @@ class AccountsAdapter(
         fun bind(data: CuentaModel) {
             binding.apply {
                 cuenta = data
-                tvSaldo.setTextColor(data.saldo.getColor(context))
                 cvCuenta.setOnClickListener {
-                    callback(data.id ?: 0)
+                    callback(data)
                 }
             }
         }

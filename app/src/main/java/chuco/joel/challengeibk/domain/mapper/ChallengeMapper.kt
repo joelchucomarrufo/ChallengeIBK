@@ -23,6 +23,7 @@ fun CuentasResponse.toDomain() = CuentasModel(
 fun CuentaResponse.toDomain() = CuentaModel(
     id = id,
     nombre = accountName,
+    numero = accountNumber,
     saldo = balance ?: 0.0,
     simbolo = symbol,
     simboloSaldo = "$symbol ${String.format("%.2f", balance)}"
@@ -35,5 +36,7 @@ fun MovimientosResponse.toDomain() = MovimientosModel(
 fun MovimientoResponse.toDomain() = MovimientoModel(
     fechaHora = dateTime,
     descripcion = description,
-    monto = amount
+    simbolo = symbol,
+    monto = amount ?: 0.0,
+    simboloMonto = "$symbol ${String.format("%.2f", amount)}"
 )

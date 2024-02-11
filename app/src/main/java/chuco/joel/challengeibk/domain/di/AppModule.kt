@@ -12,6 +12,7 @@ import chuco.joel.challengeibk.domain.usecase.CuentasUseCase
 import chuco.joel.challengeibk.domain.usecase.LoginUseCase
 import chuco.joel.challengeibk.domain.usecase.MovimientosUseCase
 import chuco.joel.challengeibk.domain.utils.SessionManager
+import chuco.joel.challengeibk.presentation.detail.DetailViewModelFactory
 import chuco.joel.challengeibk.presentation.home.HomeViewModelFactory
 import chuco.joel.challengeibk.presentation.login.LoginViewModelFactory
 import dagger.Module
@@ -90,8 +91,13 @@ class AppModule {
     }
 
     @Provides
-    fun provideHomeViewModelFactory(useCase: CuentasUseCase, sessionManager: SessionManager): ViewModelProvider.Factory {
-        return HomeViewModelFactory(useCase, sessionManager)
+    fun provideHomeViewModelFactory(useCase: CuentasUseCase): ViewModelProvider.Factory {
+        return HomeViewModelFactory(useCase)
+    }
+
+    @Provides
+    fun provideDetailViewModelFactory(useCase: MovimientosUseCase): ViewModelProvider.Factory {
+        return DetailViewModelFactory(useCase)
     }
 
     @Provides
