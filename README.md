@@ -6,6 +6,11 @@ Ejemplo práctico (App Banca Móvil)
 
 ### Funcionalidades Realizadas
 
+Para lograr la funcionalidad, es necesario tener levantado el backend que se usará, este lo podrán encontrar en el siguiente repositorio.
+
+https://github.com/joelchucomarrufo/ChallengeBackendIBK.git
+
+
 #### Login
 -----
 - Se implemento el login mediante usuario y contraseña, consumiento un servicio api-Rest mockeado.
